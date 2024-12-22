@@ -32,13 +32,6 @@
       <li>Users can search for job applications by job title, company, or status to quickly find and manage their applications.</li>
     </ul>
   </li>
-  
-  <li><strong>Reminders</strong>
-    <ul>
-      <li>Users can add follow-up reminders for job applications.</li>
-    </ul>
-  </li>
-  
   <li><strong>Profile Management</strong>
     <ul>
       <li>Users can update their profile details through the settings option, allowing them to update their user profile (e.g., profile photo, username, name, etc.).</li>
