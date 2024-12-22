@@ -27,6 +27,12 @@
     </ul>
   </li>
   
+  <li><strong>Search Function</strong>
+    <ul>
+      <li>Users can search for job applications by job title, company, or status to quickly find and manage their applications.</li>
+    </ul>
+  </li>
+  
   <li><strong>Reminders</strong>
     <ul>
       <li>Users can add follow-up reminders for job applications.</li>
