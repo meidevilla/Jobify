@@ -5,20 +5,42 @@
 
 ## Features
 
-**1. User Authentication**
-- Users can create an account, sign in, and log in securely.
-- The system supports login and session management.
-**2. Job Application Management**
-- Users can create, read, update, and delete their job applications.
-- Users can track and visualize the status of their job applications (e.g applied, interview scheduled, offer received, rejected).
-**3. Job Application Analytics**
-- Users can monitor their progress towards their job application goal with a weekly target tracker.
-- Users can view a graph of job applications sent over time and track application response rates.
-**4. Reminders**
-- Users can add follow-up reminders for job applications.
-**5. Profile Management**
-- Users can update their profile details through the settings option, allowing them to update their user profile (e.g profile photo, username, name etc.)
-- Users can change their password for improved account security.
+<ol>
+  <li><strong>User Authentication</strong>
+    <ul>
+      <li>Users can create an account, sign in, and log in securely.</li>
+      <li>The system supports login and session management.</li>
+    </ul>
+  </li>
+  
+  <li><strong>Job Application Management</strong>
+    <ul>
+      <li>Users can create, read, update, and delete their job applications.</li>
+      <li>Users can track and visualize the status of their job applications (e.g., applied, interview scheduled, offer received, rejected).</li>
+    </ul>
+  </li>
+  
+  <li><strong>Job Application Analytics</strong>
+    <ul>
+      <li>Users can monitor their progress towards their job application goal with a weekly target tracker.</li>
+      <li>Users can view a graph of job applications sent over time and track application response rates.</li>
+    </ul>
+  </li>
+  
+  <li><strong>Reminders</strong>
+    <ul>
+      <li>Users can add follow-up reminders for job applications.</li>
+    </ul>
+  </li>
+  
+  <li><strong>Profile Management</strong>
+    <ul>
+      <li>Users can update their profile details through the settings option, allowing them to update their user profile (e.g., profile photo, username, name, etc.).</li>
+      <li>Users can change their password for improved account security.</li>
+    </ul>
+  </li>
+</ol>
+
 
 ## Technologies Used
 
