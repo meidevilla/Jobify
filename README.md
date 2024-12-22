@@ -1,0 +1,49 @@
+
+# Jobify: Job Application Tracker
+
+**Jobify** is a project in-progress aimed at providing a simple but efficient job application tracker built using **Django**, **HTML**, **CSS**, and **JavaScript** for interactivity. This web application is designed to help users keep track of their job applications, update their status, and manage essential details of their job search in one place.
+
+## Features
+
+<ol>
+  <li><strong>User Authentication</strong>
+    <ul>
+      <li>Users can create an account, sign in, and log in securely.</li>
+      <li>The system supports login and session management.</li>
+    </ul>
+  </li>
+  
+  <li><strong>Job Application Management</strong>
+    <ul>
+      <li>Users can create, read, update, and delete their job applications.</li>
+      <li>Users can track and visualize the status of their job applications (e.g., applied, interview scheduled, offer received, rejected).</li>
+    </ul>
+  </li>
+  
+  <li><strong>Job Application Analytics</strong>
+    <ul>
+      <li>Users can monitor their progress towards their job application goal with a weekly target tracker.</li>
+      <li>Users can view a graph of job applications sent over time and track application response rates.</li>
+    </ul>
+  </li>
+  
+  <li><strong>Search Function</strong>
+    <ul>
+      <li>Users can search for job applications by job title, company, or status to quickly find and manage their applications.</li>
+    </ul>
+  </li>
+  <li><strong>Profile Management</strong>
+    <ul>
+      <li>Users can update their profile details through the settings option, allowing them to update their user profile (e.g., profile photo, username, name, etc.).</li>
+      <li>Users can change their password for improved account security.</li>
+    </ul>
+  </li>
+</ol>
+
+
+## Technologies Used
+
+- **HTML**: To structure the web pages.
+- **CSS**: For styling and responsiveness.
+- **JavaScript**: For dynamic frontend interactivity.
+- **Django**: For the backend functionality (e.g user management, CRUD operations, etc.)
