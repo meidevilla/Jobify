@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}Applications - Jobify{% endblock %}
+{% block content %}
+<div class="" style="max-width: 200px">
+    <div id="profile" class="col-md-2 d-flex flex-column">
+        <div class="profile-heading">
+            <p class="fw-bold m-0">Profile</p>
+            {% comment %} <div class="edit-profile">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </div> {% endcomment %}
+            <div class="signOut">
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        <i class="fa-solid fa-power-off"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="profile-content">
+            {% if user.userprofile.avatar %}
+                <img src="{{ user.userprofile.avatar.url }}" alt="Profile Avatar" class="rounded-circle">
+            {% else %}
+            {% load static %}
+                <img src="{% static 'images/default_avatar.jpg' %}" alt="Default Avatar" class="rounded-circle">
+            {% endif %}
+            <p class="text-capitalize fw-bold profile-text" style="font-size: 0.80rem">{{ user.first_name }} {{ user.last_name }}</p>
+            <p class="profile-text m-0" style="font-size: 0.6rem">{{ user.email }}</p>
+        </div>
+        <div class="streak-container">
+            <p class="fw-bold profile-text m-0" style="font-size: 0.75rem">Your Streak: <span class="ms-2"> {{ current_streak }} day/s</p>
+            <div class="streak-wrapper">
+                <div class="streak {% if current_streak == 0 %}low{% elif current_streak > 0 and current_streak < 7 %}medium{% else %}high{% endif %}">
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+                <div>
+                    {% if current_streak == 0 %}
+                        <p class="streak-text">Success is built on small daily wins. Let’s start your streak!</p>
+                    {% elif current_streak < 3 %}
+                        <p class="streak-text">Keep going! You can do it!</p>
+                    {% elif current_streak < 8 %}
+                        <p class="streak-text">Great job! You're on fire!</p>
+                    {% else %}
+                        <p class="streak-text">Amazing! You're a streak master!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="upcoming-interviews">
+            <p class="fw-bold profile-text mb-0" style="font-size: 0.80rem">Upcoming Interviews</p>
+            {% if upcoming_interviews %}
+                {% for application in upcoming_interviews %}
+                    <p class="profile-text mt-1 mb-0" style="font-size: 0.75rem">{{ application.interview_schedule|date:"F j, Y" }}</p>
+                    <div class="interview-card d-flex align-items-center">
+                        <p class="mt-1 mb-0 fw-bold" style="font-size: 0.75rem">{{ application.interview_schedule|date:"g:i a" }}</p>
+                        <div class="d-flex flex-column ms-4" style="height: 35px">
+                            <p class="mb-0 fw-bold" style="font-size: 0.80rem">{{ application.company_name }}</p>
+                            <p class="mb-0" style="font-size: 0.60rem">{{ application.position }}<p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="profile-text" style="font-size: 0.75rem;">No interviews yet – but the next opportunity could be right around the corner!</p>
+            {% endif %}
+        </div>
+        <div class="reminders">
+            <div class="reminder-heading">
+                <p class="fw-bold m-0">Reminders</p>
+            </div>
+            <div class="reminder-wrapper">
+                {% if reminders %}
+                    {% for reminder in reminders %}
+                        <div class="reminder-card">
+                            <div>
+                                <p class="mt-1 mb-0 fw-bold" style="font-size: 0.75rem">{{ reminder.title }}</p>
+                                <p class="mb-0 fw-bold" style="font-size: 0.80rem">{{ reminder.description }}</p>
+                            </div>
+                                <p class="mb-0" style="font-size: 0.60rem">{{ reminder.reminder_time }}<p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                <div class="add-reminder">
+                    <i class="fa-solid fa-plus" title="Add Reminder" aria-label="Add Reminder" data-bs-toggle="modal" data-bs-target="#addReminderModal"></i>
+                    {% include 'includes/modals/add_reminderModal.html' %}
+                    <p class="profile-text" style="font-size: 0.80rem;">You have no reminders yet! Click the <strong>+</strong> button to add one.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% comment %} <div class="signOut">
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">
+                    <i class="fa-solid fa-power-off"></i>
+                    <span>Sign Out </span>
+                </button>
+            </form>
+        </div> {% endcomment %}
+
+    </div>
+</div>
+{% endblock content %}

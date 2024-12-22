@@ -2,150 +2,146 @@
 {% block title %}Settings - Jobify{% endblock %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1">
-            {% include 'includes/sidenav.html' %}
-        </div>
-        <div id="settings-section" class="col-md-11 pt-3 px-4">
-            <div class="settings">
-                <h1 class="fw-bold">Account Settings </h1>
-                <div class="d-flex flex-row justify-content-between" style="height: 600px">
-                    <div class="sidebar">
-                        <ul>
-                            <li><a href="#" id="profile-link" class="active">User Profile</a></li>
-                            <li><a href="#" id="security-link">Security & Login</a></li>
-                            <li><a href="#">Notification</a></li>
-                            {% comment %} <li><a href="delete-account" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete Account</a></li> {% endcomment %}
-                        </ul>
-                    </div>
-                    <div class="container">
-                        <div id="profile-section">
-                            {% if messages %}
-                                <div class="container mt-3">
-                                    {% for message in messages %}
-                                        <div class="alert alert-{{ message.level_tag }} alert-dismissible fade show" role="alert">
-                                            {{ message }}
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                            <h4 class="text-end fw-bold pt-2"> My Profile </h4>
-                            <div class="profile-header">
-                                <div class="imgText-container">
-                                    {% if user.userprofile.avatar %}
-                                    <img src="{{ user.userprofile.avatar.url }}" alt="Profile Avatar" class="rounded-circle">
-                                    {% else %}
-                                        <img src="{{ user.profile.avatar.url }}" alt="Default Avatar" class="rounded-circle">
-                                    {% endif %}
-                                    <div class="ms-3">
-                                        <h4 class="m-0 p-0 text-uppercase">{{ user.first_name }} {{ user.last_name }}</h4>
-                                        <p class="secondaryText fw-bold"> Job Searcher </p>
+    {% include 'includes/sidenav.html' %}
+    <div id="settings-section">
+        <div class="settings">
+            <h1 class="fw-bold">Account Settings </h1>
+            <div class="d-flex flex-row justify-content-between" style="height: 500px">
+                <div class="sidebar">
+                    <ul>
+                        <li><a href="#" id="profile-link" class="active">User Profile</a></li>
+                        <li><a href="#" id="security-link">Security & Login</a></li>
+                        <li><a href="#">Notification</a></li>
+                    </ul>
+                </div>
+                <div class="container">
+                    <div id="profile-section">
+                        {% if messages %}
+                            <div class="container mt-3">
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.level_tag }} alert-dismissible fade show" role="alert">
+                                        {{ message }}
                                     </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <h4 class="text-end fw-bold pt-2"> My Profile </h4>
+                        <div class="profile-header">
+                            <div class="imgText-container">
+                                {% if user.userprofile.avatar %}
+                                <img src="{{ user.userprofile.avatar.url }}" alt="Profile Avatar" class="rounded-circle">
+                                {% else %}
+                                    <img src="{{ user.profile.avatar.url }}" alt="Default Avatar" class="rounded-circle">
+                                {% endif %}
+                                <div class="ms-3">
+                                    <h4 class="m-0 p-0 text-uppercase">{{ user.first_name }} {{ user.last_name }}</h4>
+                                    <p class="secondaryText fw-bold"> Job Searcher </p>
                                 </div>
-                                <div class="d-flex justify-content-between flex-row gap-4">
-                                    <a type="button" class="btn custom-button" data-bs-toggle="modal" data-bs-target="#editProfileModal">
-                                        <i class="fa-solid fa-pen-to-square me-2"></i><span>Edit Photo</span>
-                                    </a>
-                                    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form id="editProfileForm" method="POST" enctype="multipart/form-data" action="{% url 'edit_profile' %}">
-                                                        {% csrf_token %}
-                                                        <div class="mb-3">
-                                                            <label for="id_avatar" class="form-label">Avatar</label>
-                                                            <input type="file" name="avatar" id="id_avatar" class="form-control">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                            <button type="submit" class="btn btn-primary">Save</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between flex-row gap-4">
+                                <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                                    <i class="fa-solid fa-pen-to-square me-2"></i><span>Edit Photo</span>
+                                </a>
+                                <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="editProfileForm" method="POST" enctype="multipart/form-data" action="{% url 'edit_profile' %}">
+                                                    {% csrf_token %}
+                                                    <div class="mb-3">
+                                                        <label for="id_avatar" class="form-label">Avatar</label>
+                                                        <input type="file" name="avatar" id="id_avatar" class="form-control">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                    <a type="button" class="btn custom-button">
-                                        <i class="fa-solid fa-plus me-2" data-bs-toggle="modal" data-bs-target="#addApplicationModal"></i><span>Remove</span>
-                                    </a>
                                 </div>
-                            </div>
-                            <div class="profile-details">
-                                <h6 class="fw-bold">Profile Details</h6>
-                                <form method="post" action="{% url 'edit_profile' %}">
-                                    {% csrf_token %}
-                                    <div class="row w-100 m-2">
-                                        <div class="col">
-                                            <label for="firstName" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="firstName" name="first_name" value="{{ user.first_name }}">
-                                        </div>
-                                        <div class="col">
-                                            <label for="lastName" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="lastName" name="last_name" value="{{ user.last_name }}">
-                                        </div>
-                                    </div>
-                                    <div class="row w-100 m-2">
-                                        <div class="col">
-                                            <label for="username" class="form-label">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
-                                        </div>
-                                        <div class="col">
-                                            <label for="email" class="form-label">E-mail Address</label>
-                                            <input type="text" class="form-control" id="email" name="email" value="{{ user.email }}" readonly>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn bg-warning mt-2">Update Profile</button>
-                                </form>
+                                <a type="button" class="btn">
+                                    <i class="fa-solid fa-plus me-2" data-bs-toggle="modal" data-bs-target="#addApplicationModal"></i><span>Remove</span>
+                                </a>
                             </div>
                         </div>
+                        <div class="profile-details">
+                            <h6 class="fw-bold">Profile Details</h6>
+                            <form method="post" action="{% url 'edit_profile' %}">
+                                {% csrf_token %}
+                                <div class="row w-100 m-2">
+                                    <div class="col">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" name="first_name" value="{{ user.first_name }}">
+                                    </div>
+                                    <div class="col">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" name="last_name" value="{{ user.last_name }}">
+                                    </div>
+                                </div>
+                                <div class="row w-100 m-2">
+                                    <div class="col">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
+                                    </div>
+                                    <div class="col">
+                                        <label for="email" class="form-label">E-mail Address</label>
+                                        <input type="text" class="form-control" id="email" name="email" value="{{ user.email }}" readonly>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn bg-warning mt-2">Update Profile</button>
+                            </form>
+                        </div>
+                    </div>
 
-                        <div id="security-section" style="display: none;">
-                            <h4 class="text-end fw-bold pt-2"> Security & Login </h4>
-                            <h5 class="fw-bold pt-2"> Account Management </h5>
-                            <div class="changePassword mt-4 mb-4">
-                                <h6 class="fw-bold">Change Password</h6>
-                                <p>Ensure your account is secure by choosing a strong password.</p>
-                                <form method="post" action="{% url 'change_password' %}">
-                                    {% csrf_token %}
-                                    <div class="row w-100">
-                                        <!-- Old Password -->
-                                        <div class="col">
-                                            <label for="id_old_password" class="form-label">Old Password</label>
-                                            <input type="password" class="form-control" id="id_old_password" name="old_password" placeholder="Enter old password" required>
-                                        </div>
-                                        <!-- New Password -->
-                                        <div class="col">
-                                            <label for="id_new_password1" class="form-label">New Password</label>
-                                            <input type="password" class="form-control" id="id_new_password1" name="new_password1" placeholder="Enter new password" required>
-                                        </div>
-                                        <!-- Confirm New Password -->
-                                        <div class="col">
-                                            <label for="id_new_password2" class="form-label">Confirm New Password</label>
-                                            <input type="password" class="form-control" id="id_new_password2" name="new_password2" placeholder="Confirm new password" required>
-                                        </div>
+                    <div id="security-section" style="display: none;">
+                        <h4 class="text-end fw-bold pt-2"> Security & Login </h4>
+                        <h5 class="fw-bold pt-2"> Account Management </h5>
+                        <div class="changePassword mt-4 mb-4">
+                            <h6 class="fw-bold">Change Password</h6>
+                            <p>Ensure your account is secure by choosing a strong password.</p>
+                            <form method="post" action="{% url 'change_password' %}">
+                                {% csrf_token %}
+                                <div class="row w-100">
+                                    <!-- Old Password -->
+                                    <div class="col">
+                                        <label for="id_old_password" class="form-label">Old Password</label>
+                                        <input type="password" class="form-control" id="id_old_password" name="old_password" placeholder="Enter old password" required>
                                     </div>
-                        
-                                    <div class="btn-group mt-2">
-                                        <a href="{% url 'settings' %}" class="btn btn-secondary">Cancel</a>
-                                        <button type="submit" class="btn bg-warning">Change Password</button>
+                                    <!-- New Password -->
+                                    <div class="col">
+                                        <label for="id_new_password1" class="form-label">New Password</label>
+                                        <input type="password" class="form-control" id="id_new_password1" name="new_password1" placeholder="Enter new password" required>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="deleteAccount mt-5">
-                                <h5 class="fw-bold text-danger">Delete Your Account</h5>
-                                <p>This action is irreversible. Once your account is deleted, all your data will be permanently removed.</p>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete Account</button>
-                                {% include "includes/modals/delete_accountModal.html" %}
-                            </div>
+                                    <!-- Confirm New Password -->
+                                    <div class="col">
+                                        <label for="id_new_password2" class="form-label">Confirm New Password</label>
+                                        <input type="password" class="form-control" id="id_new_password2" name="new_password2" placeholder="Confirm new password" required>
+                                    </div>
+                                </div>
+                    
+                                <div class="btn-group mt-2">
+                                    <a href="{% url 'settings' %}" class="btn btn-secondary">Cancel</a>
+                                    <button type="submit" class="btn bg-warning">Change Password</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="deleteAccount mt-5">
+                            <h5 class="fw-bold text-danger">Delete Your Account</h5>
+                            <p>This action is irreversible. Once your account is deleted, all your data will be permanently removed.</p>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete Account</button>
+                            {% include "includes/modals/delete_accountModal.html" %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>
 {% endblock content %}

@@ -1,34 +1,49 @@
-<nav>
-    <div class="customSideNav" id="sideNav">
-        <div id="nav-header">
+<header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
             <div id="logo-container">
                 {% load static %}
-                <img src="{% static 'images/logo.png' %}" alt="logo">
+                <img src="{% static 'images/logo.png' %}" alt="logo" class="navbar-brand">
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <div class="navbar-nav ms-auto">
+                    <div class="nav-item {% if request.path == '/dashboard/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'dashboard' %}">dashboard</a>
+                    </div>
+                    <div class="nav-item {% if request.path == '/applications/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'applications' %}">applications</a>
+                    </div>
+                    <div class="nav-item {% if request.path == '/calendar/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'calendar' %}">calendar</a>
+                    </div>
+                    <div class="nav-item {% if request.path == '/settings/' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'settings' %}">settings</a>
+                    </div>
+                    <div class="nav-item dropdown d-flex align-items-center ms-3">
+                        {% if user.userprofile.avatar %}
+                            <img src="{{ user.userprofile.avatar.url }}" data-toggle="tooltip" title="{{ user.username }}" alt="Profile Avatar" 
+                                 class="rounded-circle dropdown-toggle" style="max-width: 40px" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% else %}
+                            {% load static %}
+                            <img src="{% static 'images/default_avatar.jpg' %}" data-toggle="tooltip" title="{{ user.username }}" alt="Default Avatar" 
+                                 class="rounded-circle dropdown-toggle" style="max-width: 40px" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% endif %}
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#">my profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <form method="POST" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-button">
+                                    <i class="fa-solid fa-power-off"></i><span>Logout</span>
+                                </button>
+                            </form>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="nav-content">
-            <div class="nav-button {% if request.path == '/dashboard/' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'dashboard' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Dashboard">
-                    <i class="fa-solid fa-list"></i>
-                </a>
-            </div>
-            <div class="nav-button {% if request.path == '/applications/' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'applications' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Applications">
-                    <i class="fa-solid fa-briefcase"></i>
-                </a>
-            </div>
-            <div class="nav-button {% if request.path == '/calendar/' %}active{% endif %}">
-                <a class="nav-link"  href="{% url 'calendar' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Calendar">
-                    <i class="fa-solid fa-calendar"></i>
-                </a>
-            </div>
-            <div class="nav-button {% if request.path == '/settings/' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'settings' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings">
-                    <i class="fa-solid fa-gear"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</nav>
-
-
+    </nav>
+</header>

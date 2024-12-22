@@ -2,86 +2,78 @@
 {% block title %}Applications - Jobify{% endblock %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1">
-            {% include 'includes/sidenav.html' %}
+    {% include 'includes/sidenav.html' %}
+    <div id="applications-section">
+        <div class="d-flex flex-row justify-content-between">
+            <div>
+                <h3 class="fw-bold text-uppercase" style="margin:0">Applications Board</h3>
+                <p style="margin: 0;">Your applications at a glance.</p>
+            </div>
         </div>
-        
-        <div id="applications-section" class="col-md-11 pt-3 px-4">
-            <div class="d-flex flex-row justify-content-between mt-2 w-100">
-                <div>
-                    <h3 class="fw-bold text-uppercase" style="margin:0">Applications Board</h3>
-                    <p style="margin: 0;">Your applications at a glance.</p>
-                </div>
+        <div class="d-flex justify-content-between mb-3 mt-2 gap-2">
+            <form method="GET" action="{% url 'applications' %}" class="search-container ">
+                <button type="submit" class="btn fa-solid fa-magnifying-glass"></button>
+                <input type="text" name="search" class="form-control" placeholder="Search something here.." value="{{ request.GET.search }}">
+            </form>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addApplicationModal" style="background-color: gold; color: black; width: 180px; height: 40px; border-radius: 20px">
+                <i class="fa-solid fa-plus me-2"></i><span>Application </span>
+            </button>
+        </div>
 
-            </div>
-            
-            <div class="d-flex justify-content-between mb-3 mt-2 gap-2">
-                <form method="GET" action="{% url 'applications' %}" class="search-container ">
-                    <button type="submit" class="btn fa-solid fa-magnifying-glass"></button>
-                    <input type="text" name="search" class="form-control" placeholder="Search something here.." value="{{ request.GET.search }}">
-                </form>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addApplicationModal" style="background-color: gold; color: black; width: 180px; height: 40px; border-radius: 20px">
-                    <i class="fa-solid fa-plus me-2"></i><span>Application </span>
-                </button>
-            </div>
+        <div class="table-responsive">
+            <table id="applications-table" class="table table-striped table-hover table-light">
+                <thead
+                >
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" data-sort="string">Company Name  <i class="fa-solid fa-sort ms-2"></i></th>
+                        <th scope="col" data-sort="string">Position  <i class="fa-solid fa-sort ms-2"></i></th>
+                        <th scope="col" data-sort="string">Work Setup </th>
+                        <th scope="col" data-sort="string">Status</th>
+                        <th scope="col">Date Applied</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if all_applications %}
+                    {% for application in all_applications %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ application.company_name }}</td>
+                        <td>{{ application.position }}</td>
+                        <td>{{ application.work_setup }}</td>
+                        <td>
+                            <span class="status-badge {{ application.status|slugify }}">
+                              {{ application.status }}
+                            </span>
+                          </td>
+                        <td>{{ application.date_applied|date:"F j, Y" }}</td>
+                        <td>
+                            <div class="d-flex flex-row justify-content-between">
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#applicationDetailsModal{{ application.id }}"> 
+                                    <i class="fa-solid fa-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View Application"></i>
+                                </button>
+                                {% include 'includes/modals/view_applicationDetailsModal.html' %}
+                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editApplicationModal{{ application.id }}"> 
+                                    <i class="fas fa-edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Application" ></i>
+                                </button>
+                                {% include 'includes/modals/edit_applicationModal.html' %}
 
-            <div class="table-responsive">
-                <table id="applications-table" class="table table-striped table-hover table-light">
-                    <thead
-                    >
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col" data-sort="string">Company Name  <i class="fa-solid fa-sort ms-2"></i></th>
-                            <th scope="col" data-sort="string">Position  <i class="fa-solid fa-sort ms-2"></i></th>
-                            <th scope="col" data-sort="string">Work Setup </th>
-                            <th scope="col" data-sort="string">Status</th>
-                            <th scope="col">Date Applied</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if all_applications %}
-                        {% for application in all_applications %}
-                        <tr>
-                            <th scope="row">{{ forloop.counter }}</th>
-                            <td>{{ application.company_name }}</td>
-                            <td>{{ application.position }}</td>
-                            <td>{{ application.work_setup }}</td>
-                            <td>
-                                <span class="status-badge {{ application.status|slugify }}">
-                                  {{ application.status }}
-                                </span>
-                              </td>
-                            <td>{{ application.date_applied|date:"F j, Y" }}</td>
-                            <td>
-                                <div class="d-flex flex-row justify-content-between">
-                                    <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#applicationDetailsModal{{ application.id }}"> 
-                                        <i class="fa-solid fa-eye" data-bs-toggle="tooltip" data-bs-placement="top" title="View Application"></i>
-                                    </button>
-                                    {% include 'includes/modals/view_applicationDetailsModal.html' %}
-                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editApplicationModal{{ application.id }}"> 
-                                        <i class="fas fa-edit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Application" ></i>
-                                    </button>
-                                    {% include 'includes/modals/edit_applicationModal.html' %}
-    
-                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ application.id }}">
-                                        <i class="fa-solid fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Application" ></i>
-                                    </button>
-                                    {% include 'includes/modals/confirm_deletion.html' %}
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        {% else %}
-                        <tr>
-                            <td colspan="9">Currently, you don't have any applications posted. Add one to start tracking!</td>
-                        </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-            </div>
-
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ application.id }}">
+                                    <i class="fa-solid fa-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Application" ></i>
+                                </button>
+                                {% include 'includes/modals/confirm_deletion.html' %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="9">Currently, you don't have any applications posted. Add one to start tracking!</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
         </div>
     </div>
     {% include 'includes/modals/add_applicationModal.html' %}

@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Sign Up - JobTrckr{% endblock %}
 {% block content %}
-    {% include "includes/mini_header.html" %}
+    <header>
+        <div class="logo ms-4">
+            {% load static %}
+            <a href="{% url 'landing_page' %}">
+                <img src="{% static 'images/logo.png' %}" alt="logo" style="width: 180px">
+            </a>
+        </div>
+    </header>
     <div class="container d-flex justify-content-center align-items-center" style="height: 50vh">
         <div class="row text-center">
             <h1 class="fw-bold text-uppercase">Sign Up</h1>
             <p>Join Jobify to keep your applications organized.</p>
-            
             <div class="col d-flex justify-content-center align-items-center">
                 <form method="POST" style="width: 30rem;">
                     {% csrf_token %}
@@ -80,9 +86,9 @@
                             {% endif %}
                         </div>
                     </div>
-                    <button type="submit" class="btn custom-button w-100 fw-bold">Sign Up</button>
+                    <button type="submit" class="btn main-button w-100 fw-bold">Sign Up</button>
                     <div class="text-center mt-3">
-                        <p>Already have an account? <a class="fw-bold secondary-accent" href="{% url 'login' %}">Log In</a></p>
+                        <p>Already have an account? <a class="fw-bold secondary-button" href="{% url 'login' %}">Log In</a></p>
                     </div>
                 </form>
             </div>

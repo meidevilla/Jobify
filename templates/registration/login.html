@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Login - Jobify{% endblock %}
 {% block content %}
-    {% include "includes/mini_header.html" %}
+    <header>
+        <div class="logo ms-4">
+            {% load static %}
+            <a href="{% url 'landing_page' %}">
+                <img src="{% static 'images/logo.png' %}" alt="logo" style="width: 180px">
+            </a>
+        </div>
+    </header>
     <div class="container d-flex justify-content-center align-items-center" style="height: 50vh">
         <div class="row text-center">
             <h1 class="fw-bold text-uppercase">Log In</h1> 
             <p>Already a member? Log in and pick up where you left off.</p>
-            
             <div class="col d-flex justify-content-center align-items-center">
                 <form method="POST" id="login-form" style="width: 30rem;">
                     {% csrf_token %}
-                    {% comment %} account created !! django message  {% endcomment %}
-                     
                     {% if messages %}
                         <div class="container mt-3">
                             {% for message in messages %}
@@ -22,7 +26,6 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                    
                     <div class="d-flex flex-column">
                         <div class="input-group mb-1">
                             <input type="text" name="username" class="form-control" id="id_username" placeholder="username">
@@ -52,9 +55,9 @@
                         <input class="me-2" type="checkbox" value="" id="remember_me">
                         <label class="form-check-label" for="remember_me" style="font-size: 13px"> Remember Me </label>
                     </div>
-                    <button type="submit" class="btn custom-button w-100 fw-bold">Log In</button>
+                    <button type="submit" class="btn main-button w-100 fw-bold">Log In</button>
                     <div class="text-center mt-3">
-                        <p>Don't have an account? <a class="fw-bold secondary-accent" href="{% url 'signup' %}">Sign Up</a></p>
+                        <p>Don't have an account? <a class="fw-bold secondary-button" href="{% url 'signup' %}">Sign Up</a></p>
                     </div>
                 </form>
             </div>

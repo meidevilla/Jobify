@@ -1,39 +1,27 @@
 {% extends 'base.html' %}
-
 {% block title %}Calendar - Jobify{% endblock %}
-
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-1">
-            {% include 'includes/sidenav.html' %}
-        </div>
-        
-        <div id="calendar-section" class="col-md-11 pt-3 px-4">
-            <h1>Your Calendar</h1>
-            <div id="calendar"></div>
-        </div>
-        <script>
-
-            document.addEventListener('DOMContentLoaded', function() {
-                    var calendarEl = document.getElementById('calendar');
-                    var calendar = new FullCalendar.Calendar(calendarEl, {
-                    initialView: 'dayGridMonth',
-                    
-                    //event data : 
-                    events: '/mp/', /*. URL from urls.py (JSON output from views.py) */
-                    headerToolbar: {
-                        left: 'prev,next today', 
-                        center: 'title',
-                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                    },
-                    
-                    });
-                    calendar.render();
-                });
-        
-        </script>
+    {% include 'includes/sidenav.html' %}
+    <div id="calendar-section" class="col-md-11 pt-3 px-4">
+        <h1>Your Calendar</h1>
+        <div id="calendar"></div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                //event data :
+                events: '/mp/',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                });
+                calendar.render();
+            });
+        </script>
 </div>
-
 {% endblock content %}

@@ -3,8 +3,57 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: black;
 }
-.customSideNav {
+
+/* landing page */
+.main-button {
+    width: 200px;
+    padding: 12px 20px;
+    background-color: #F5D700 !important;
+    text-transform: uppercase !important;
+    font-weight: bold;
+    font-size: 14px;
+    border: 2px solid #333333;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.main-button:hover {
+    background-color: black !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+.secondary-button {
+    text-transform: uppercase !important;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    color: black !important;
+}
+.secondary-button:hover {
+    color: #F5D700 !important;
+    font-size: 20px;
+    transform: translateY(-3px);
+}
+
+#dashboard-content nav {
+    height: 60px !important;
+}
+.nav-item.active {
+    border-bottom: 4px solid #ffd700;
+    font-weight: 700;
+    font-style: italic;
+}
+#logo-container img {
+    max-width: 70px;
+    width: 100%;
+}
+/* .customSideNav {
     top: 0;
     bottom: 0;
     overflow: hidden;
@@ -46,7 +95,6 @@
     color: #ffd700;
 }
 .nav-button:hover {
-    /* border-right: 4px solid #ffffff; */
     background-color: transparent;
     color: #e4b84e;
 }
@@ -55,7 +103,6 @@
     transition: 0.2s ease;
 }
 .nav-button.active {
-    /* border-right: 5px solid #ffd700; */
     border-right: 4px solid #ffd700;
     font-weight: 700;
 }
@@ -72,11 +119,7 @@
     justify-content: center;
     padding: 10px;
     width: 100%;
-}
-#logo-container img {
-    max-width: 110px;
-    width: 100%;
-}
+} */
 .wrapper {
     display: flex;
     flex-direction: row;
@@ -95,7 +138,7 @@
 }
 
 #dashboard-content {
-    padding: 20px;
+    padding: 10px 30px;
 }
 .hero {
     display: flex;
@@ -148,12 +191,14 @@ input[type="text"]:focus {
     padding: 20px;
     border-radius: 10px;
 }
+.hero-greeting, .totalAppCard, .pieChart, .monthlyApp-card, .responseRate-card, .progress-card {
+    background-color: #F5D700;
+}
 .hero-greeting {
     border-radius: 10px;
     display: flex;
     flex-direction: row;
-    height: 120px;
-    background-color: #FAF3E0;
+    height: 130px;
     margin: 10px 0 0 0;
     justify-content: space-between;
 }
@@ -201,17 +246,11 @@ input[type="text"]:focus {
     left: 0;
 }
 
-.first-column, .second-column, .third-column {
-    display: flex;
-    flex-direction: column;
-}
-/* first-column */
 .totalAppCard {
     margin-top: 10px;
     padding: 10px;
     display: flex;
     flex-direction: column;
-    background-color: #F7E7CE;
     border-radius: 10px;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -228,7 +267,6 @@ input[type="text"]:focus {
 .pieChart {
     margin-top: 10px;
     padding: 10px;
-    background-color: #F7E7CE;
     border-radius: 10px;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -262,6 +300,7 @@ input[type="text"]:focus {
     flex-direction: row;
     justify-content: space-between;
     gap: 10px;
+    margin-bottom: 10px;
 }
 .statsCard {
     margin-top: 10px;
@@ -274,10 +313,9 @@ input[type="text"]:focus {
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    height: 150px;
-    max-width: 500px;
     width: 100%;
     padding: 10px;
+    max-height: 180px;
 }
 .statsIcon {
     position: absolute;
@@ -307,6 +345,7 @@ input[type="text"]:focus {
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     height: 100%;
     max-height: 315px;
+    margin-bottom: 10px;
 }
 .chart-wrapper {
     width: 100%;
@@ -321,7 +360,6 @@ input[type="text"]:focus {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #F7E7CE;
     padding: 20px;
     height: 250px;
 }
@@ -331,7 +369,6 @@ input[type="text"]:focus {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #F7E7CE;
     padding: 20px;
     height: 215px;
 }
@@ -349,7 +386,7 @@ input[type="text"]:focus {
     background: conic-gradient(
         from 0deg,
         var(--clr, #ffffff) 0% calc(var(--progress) * 1%),
-        #F5D700 calc(var(--progress) * 1%) 100%
+        #fff calc(var(--progress) * 1%) 100%
     );
     border-radius: 50%;
     display: flex;
@@ -564,57 +601,7 @@ input[type="text"]:focus {
     color: white !important;
 } */
 
-.landing-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.custom-button {
-    width: 200px;
-    padding: 12px 20px;
-    color: white !important;
-    background-color: black !important;
-    text-transform: uppercase !important;
-    font-weight: bold;
-    font-size: 14px;
-    border: 2px solid #333333;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-.custom-button:hover {
-    background-color: #333333 !important;
-    color: #ffffff !important;
-    border-color: #ffffff !important;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-}
-.secondary-accent {
-    color: black;
-    text-decoration: none;
-    font-size: 1.10rem;
-    position: relative;
-}
-.secondary-accent:hover {
-    color: #343434;
-    text-transform: uppercase;
-}
-.secondary-accent::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: #2F2F2F;
-    transition: width 0.3s ease; 
-}
 
-.secondary-accent:hover::after, .secondary-accent:focus::after, .secondary-accent.active::after {
-    width: 100%; 
-}
 
 .form-label {
     color: black;
@@ -624,10 +611,8 @@ input[type="text"]:focus {
 
 
 
-/* applications-section */
 #applications-section {
-    height: 100vh;
-    background-color: #FAF3E0;
+    padding: 10px;
 }
 
 
@@ -661,11 +646,6 @@ input[type="text"]:focus {
 }
 
 
-
-#settings-section {
-    height: 100vh;
-    background-color: #FAF3E0;
-}
 .settings {
     display: flex;
     flex-direction: column;
