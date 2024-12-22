@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include "includes/mini_header.html" %}
+    <div class="landing-page mt-5">
+        <h1 class="text-center text-uppercase" style="font-weight: 700">Stay Organized, <br> Stay Ahead.</h1>
+        <h4 class="text-center mt-2" style="width: 500px;">Streamline your job search and make every application count.</h4>
+        <div class="button-group text-center mt-4 d-flex gap-5">
+            <a href="{% url 'signup' %}" class="btn custom-button fw-bold" role="button">Sign Up</a>
+            <a href="{% url 'login' %}" class="btn custom-button fw-bold ms-3" role="button">Login</a>
+        </div>
+    </div>
+{% endblock content %}

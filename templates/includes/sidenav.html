@@ -1,0 +1,34 @@
+<nav>
+    <div class="customSideNav" id="sideNav">
+        <div id="nav-header">
+            <div id="logo-container">
+                {% load static %}
+                <img src="{% static 'images/logo.png' %}" alt="logo">
+            </div>
+        </div>
+        <div id="nav-content">
+            <div class="nav-button {% if request.path == '/dashboard/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'dashboard' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Dashboard">
+                    <i class="fa-solid fa-list"></i>
+                </a>
+            </div>
+            <div class="nav-button {% if request.path == '/applications/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'applications' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Applications">
+                    <i class="fa-solid fa-briefcase"></i>
+                </a>
+            </div>
+            <div class="nav-button {% if request.path == '/calendar/' %}active{% endif %}">
+                <a class="nav-link"  href="{% url 'calendar' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Calendar">
+                    <i class="fa-solid fa-calendar"></i>
+                </a>
+            </div>
+            <div class="nav-button {% if request.path == '/settings/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'settings' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings">
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+

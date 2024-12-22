@@ -1,0 +1,69 @@
+<div class="modal fade" id="addApplicationModal" tabindex="-1" aria-labelledby="addApplicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addApplicationModalLabel">Add New Application</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addApplicationForm" method="post" action="{% url 'applications' %}">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="companyName" class="form-label">Company Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="companyName" name="company_name" required>
+                        </div>
+                        <div class="col">
+                            <label for="position" class="form-label">Position <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="position" name="position" required>
+                        </div>
+                        <div class="col">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location" name="location">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="companyWebsite" class="form-label">Company Website</label>
+                            <input type="link" class="form-control" id="companyWebsite" name="company_website">
+                        </div>
+                        <div class="col">
+                            <label for="workSetup" class="form-label">Work Setup <span class="text-danger">*</span></label>
+                            <select class="form-select" id="workSetup" name="work_setup">
+                                <option value="Full FTF">Full FTF</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="Remote">Remote</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="Applied">Applied</option>
+                                <option value="Interviewing">Interviewing</option>
+                                <option value="Offer Received">Offer Received</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="dateApplied" class="form-label">Date Applied <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="dateApplied" name="date_applied" required>
+                        </div>
+                        <div class="col">
+                            <label for="interview_schedule" class="form-label">Interview Schedule</label>
+                            <input type="datetime-local" class="form-control" id="interview_schedule" name="interview_schedule">
+                        </div>
+                        <div class="col">
+                            <label for="jobLink" class="form-label">Job Posting URL</label>
+                            <input type="url" class="form-control" id="jobLink" name="job_posting_url">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Application</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="modal fade" id="editApplicationModal{{ application.id }}" tabindex="-1" aria-labelledby="editApplicationModalLabel{{ application.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editApplicationModalLabel{{ application.id }}" style="color: black">Edit Application</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'edit_application' application.id %}">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="companyName" class="form-label">Company Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="companyName" name="company_name" value="{{ application.company_name }}" required>
+                        </div>
+                        <div class="col">
+                            <label for="position" class="form-label">Position <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="position" name="position" value="{{ application.position }}" required>
+                        </div>
+                        <div class="col">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location" name="location" value="{{ application.location }}">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="companyWebsite" class="form-label">Company Website</label>
+                            <input type="link" class="form-control" id="companyWebsite" name="company_website" value="{{ application.company_website }}">
+                        </div>
+                        <div class="col">
+                            <label for="workSetup" class="form-label">Work Setup <span class="text-danger">*</span></label>
+                            <select class="form-select" id="workSetup" name="work_setup">
+                                <option value="Full FTF" {% if application.work_setup == 'Full FTF' %}selected{% endif %}>Full FTF</option>
+                                <option value="Hybrid" {% if application.work_setup == 'Hybrid' %}selected{% endif %}>Hybrid</option>
+                                <option value="Remote" {% if application.work_setup == 'Remote' %}selected{% endif %}>Remote</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="Applied" {% if application.status == 'Applied' %}selected{% endif %}>Applied</option>
+                                <option value="Interviewing" {% if application.status == 'Interviewing' %}selected{% endif %}>Interviewing</option>
+                                <option value="Offer Received" {% if application.status == 'Offer Received' %}selected{% endif %}>Offer Received</option>
+                                <option value="Rejected" {% if application.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="dateApplied" class="form-label">Date Applied <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" id="dateApplied" name="date_applied" value="{{ application.date_applied|date:'Y-m-d' }}" required>
+                        </div>
+                        <div class="col">
+                            <label for="interview_schedule" class="form-label">Interview Schedule</label>
+                            <input type="datetime-local" class="form-control" id="interview_schedule" name="interview_schedule" value="{{ application.interview_schedule|date:'Y-m-d' }}">
+                        </div>
+                        <div class="col">
+                            <label for="jobLink" class="form-label">Job Posting URL</label>
+                            <input type="url" class="form-control" id="jobLink" name="job_posting_url" value="{{ application.job_posting_url }}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

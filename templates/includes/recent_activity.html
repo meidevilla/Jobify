@@ -1,0 +1,25 @@
+<div class="recent_activity p-2">
+    <div class="d-flex align-items-center justify-items-between">
+        <p class="recent-title me-4"> recent activity</p>
+        <a href="{% url 'dashboard' %}">
+            <i class="fa-solid fa-bell"></i>
+        </a>    
+    </div>
+    {% if recent_activities %}
+    <div class="activity-items">
+        {% for activity in recent_activities %}
+        <div class="activity">
+            <li><strong>{{ activity.get_action_type_display }}</strong><br>
+                <em>For {{ activity.application.company_name }} - {{ activity.application.position }}</em><br>
+                {% if activity.description %}
+                    <p>{{ activity.description }}</p>
+                {% endif %}
+                <small>At {{ activity.created_at|date:"Y-m-d H:i" }}</small>
+            </li>
+            </div>
+        {% endfor %}
+        {% else %}
+            <h5> no recent activities </h5>
+        {% endif %}
+    </div>
+</div>

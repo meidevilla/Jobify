@@ -1,0 +1,70 @@
+{% comment %} {% comment %} {% comment %} {% extends 'base.html' %}
+{% block title %}Account Dashboard - JobTrckr{% endblock %}
+{% block content %}
+    {% include 'dashboard_layout.html'%}
+
+    {% comment %} {% if user.is_authenticated %}
+    <div class="container text-justify">
+        <div class="row">
+            <div class="col-8">
+                <h1>WELCOME BACK, {{ user.username}} !</h1>
+                <p>you've made great progress in your job search. let's keep it going!</p>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addApplicationModal">ADD APPLICATION</a>
+            </div>
+        </div>
+        <hr>
+
+        <h2 class="fw-bold">job application status </h2>
+        <div class="row d-flex flex-wrap g-4 fw-bold justify-content-center">
+            <div class="col">
+                <div class="card" style="height: 300px;">
+                    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
+                        <i class="fas fa-briefcase fa-3x"></i>
+                        <h6 class="card-title p-4">Total Applications</h6>
+                        <h2 class="card-text">{{ total_applications }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="height: 300px;">
+                    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
+                        <i class="fas fa-calendar-check fa-3x"></i>
+                        <h6 class="card-title p-4">Interviews Scheduled</h6>
+                        <h2 class="card-text">{{ total_interviews }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="height: 300px;">
+                    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
+                        <i class="fas fa-spinner fa-3x"></i>
+                        <h6 class="card-title p-4">Applications in Progress</h6>
+                        <h2 class="card-text">{{ applications_in_progress }}</h2>
+                    </div>
+                 </div>
+            </div>
+            <div class="col">
+                <div class="card" style="height: 300px;">
+                    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
+                        <i class="fas fa-gift fa-3x"></i>
+                        <h6 class="card-title p-4">Offers Received</h6>
+                        <h2 class="card-text">{{ total_offers }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="height: 300px;">
+                    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
+                        <i class="fas fa-times-circle fa-3x"></i>
+                        <h6 class="card-title p-4">Total Rejections</h6>
+                        <h2 class="card-text">{{ total_rejections }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% include 'add_application.html' %}
+    {% endif %} {% endcomment %}
