@@ -91,7 +91,7 @@
             </div>
                 
             <div class="second-container">
-                <div class="col-lg-6 col-md-4 col-sm-12 monthlyApp-card shadow-lg mb-4 ">
+                <div class="col-lg-6 col-md-4 col-sm-12 monthlyApp-card shadow-lg ">
                     <h4 class="fw-bold text-uppercase m-0">Job Applications Sent Over Time</h4>
                     <br>
                     {% if no_data %}
@@ -130,7 +130,7 @@
                     {% endif %}
                 </div>
                 <div class="progress-card shadow-lg">
-                    <h5 class="fw-bold mt-0">Weekly Target</h5>
+                    <h5 class="fw-bold text-uppercase mt-0">Weekly Target</h5>
                     <div class="circle" style="--progress: {{ progress_percentage }};">
                         <div class="progress-data d-flex align-items-center flex-row">
                             <h3 class="fw-bold mb-0" style="color: white">{{ progress_percentage }}%</h3>
@@ -144,127 +144,127 @@
     {% include 'includes/modals/add_applicationModal.html' %}
 </div>
 
-    <script>
-        const labels = {{ labels|safe }};
-        const totals = {{ totals|safe }};
-        const ctx = document.getElementById('applicationsBarChart').getContext('2d');
-        const applicationsBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Applications Sent',
-                    data: totals,
-                    background: 'linear-gradient(135deg, #1f2937, #374151);',
-                    backgroundColor: '#F5D700',
-                    borderWidth: 1,
-                }]
+<script>
+    const labels = {{ labels|safe }};
+    const totals = {{ totals|safe }};
+    const ctx = document.getElementById('applicationsBarChart').getContext('2d');
+    const applicationsBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Applications Sent',
+                data: totals,
+                background: 'linear-gradient(135deg, #1f2937, #374151);',
+                backgroundColor: '#F5D700',
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        font: {
+                            size: 14,
+                            family: 'Poppins',
+                            weight: '500',
+                        },
+                        color: 'black',
+                    },
+                },
             },
+            scales: {
+                x: {
+                    ticks: {
+                        font: {
+                            size: 14,
+                            family: 'Poppins',
+                            weight: '500',
+                        },
+                        color: 'black'
+                    },
+                    grid: {
+                        display: true
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        font: {
+                            size: 14,
+                            family: 'Poppins',
+                            weight: '500',
+                        },
+                        color: 'black'
+                    },
+                    grid: {
+                        color: 'black',
+                        borderColor: '#fff'
+                    }
+                }
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('conversionPieChart').getContext('2d');
+        const chartData = {
+            labels: ['Applied Applications', 'Interview Scheduled', 'Offer Received', 'Application Rejected'],
+            datasets: [{
+                data: [
+                    {{ applied_applications }},
+                    {{ total_interviews }},
+                    {{ total_offers }},
+                    {{ total_rejections }}
+                ],
+                backgroundColor: ['gold', '#9333ea', '#28a745', '#dc3545'],
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'pie',
+            data: chartData,
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        bottom: 10,
+                    }
+                },
                 plugins: {
                     legend: {
                         display: true,
+                        position: 'top',
+                        align: 'start',
                         labels: {
+                            boxWidth: 15,
+                            padding: 10,
                             font: {
-                                size: 14,
-                                family: 'Poppins',
-                                weight: '500',
+                                size: 11,
+                                family: 'Poppins, sans-serif',
                             },
                             color: 'black',
-                        },
-                    },
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            font: {
-                                size: 14,
-                                family: 'Poppins',
-                                weight: '500',
-                            },
-                            color: 'black'
-                        },
-                        grid: {
-                            display: true
                         }
                     },
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1,
-                            font: {
-                                size: 14,
-                                family: 'Poppins',
-                                weight: '500',
-                            },
-                            color: 'black'
-                        },
-                        grid: {
-                            color: 'black',
-                            borderColor: '#fff'
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
                         }
                     }
                 }
             }
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const ctx = document.getElementById('conversionPieChart').getContext('2d');
-            const chartData = {
-                labels: ['Applied Applications', 'Interview Scheduled', 'Offer Received', 'Application Rejected'],
-                datasets: [{
-                    data: [
-                        {{ applied_applications }},
-                        {{ total_interviews }},
-                        {{ total_offers }},
-                        {{ total_rejections }}
-                    ],
-                    backgroundColor: ['teal', '#9333ea', '#28a745', '#dc3545'],
-                    borderWidth: 2
-                }]
-            };
-
-            const config = {
-                type: 'pie',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            left: 10,
-                            right: 10,
-                            bottom: 10,
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            align: 'start',
-                            labels: {
-                                boxWidth: 15,
-                                padding: 10,
-                                font: {
-                                    size: 11,
-                                    family: 'Poppins, sans-serif',
-                                },
-                                color: 'black',
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(tooltipItem) {
-                                    return tooltipItem.label + ': ' + tooltipItem.raw;
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-            const conversionPieChart = new Chart(ctx, config);
-        });
-    </script>
+        };
+        const conversionPieChart = new Chart(ctx, config);
+    });
+</script>
 {% endblock content %}
