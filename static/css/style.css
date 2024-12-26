@@ -41,14 +41,6 @@
 }
 
 /* navigation bar */
-header:focus, nav:focus {
-    outline: none;
-}
-
-header:active, nav:active {
-    background-color: transparent; /* Adjust active state styles if needed */
-}
-
 .navbar-toggler, .navbar-toggler:focus,
 .navbar-toggler:active {
   border: none;
