@@ -41,6 +41,13 @@
 }
 
 /* navigation bar */
+header:focus, nav:focus {
+    outline: none;
+}
+
+header:active, nav:active {
+    background-color: transparent; /* Adjust active state styles if needed */
+}
 
 .navbar-toggler, .navbar-toggler:focus,
 .navbar-toggler:active {
@@ -390,7 +397,6 @@ input[type="text"]:focus {
 .settings {
     display: flex;
     flex-direction: column;
-    background-color: #faffff;
     width: 100%;
     padding: 20px;
     border-radius: 20px;
