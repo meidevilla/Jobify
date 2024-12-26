@@ -42,6 +42,13 @@
 
 /* navigation bar */
 
+.navbar-toggler, .navbar-toggler:focus,
+.navbar-toggler:active {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none; 
+}
 .nav-item.active {
     border-bottom: 4px solid #ffd700;
     font-weight: 700;
@@ -82,7 +89,7 @@
     padding: 10px 30px;
 }
 
-.hero-greeting, .totalAppCard, .pieChart, .monthlyApp-card, .responseRate-card, .progress-card {
+.hero-greeting {
     background-color: #F5D700;
 }
 
@@ -135,10 +142,13 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    padding: 10px;
     border-radius: 10px;
+    width: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    max-height: 180px;
+    background-color: #F7E7CE;
 }
 .specialIcon {
     position: absolute;
@@ -152,10 +162,11 @@
     padding: 10px;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-height: 265px;
+    height: 265px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: #F7E7CE;
 }
 .data {
     display: flex;
@@ -165,16 +176,30 @@
     padding: 10px;
     margin: 10px 0;
 }
+.chart-wrapper {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#conversionPieChart {
+    max-width: 250px;
+    height: auto;
+    aspect-ratio: 1.20;
+}
+
 .statsCard .data {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5px;
-    margin: 5px 0;
+    padding: 15px;
+    margin: 15px 0;
 }
 .statsCard .data p {
-    font-size: 0.70rem;
+    font-size: 0.90rem;
+    font-weight: 600;
 }
 .stats-container {
     display: flex;
@@ -188,32 +213,37 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    justify-content: space-between;
+    gap: 10px;
     background-color: #F7E7CE;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    width: 100%;
     padding: 10px;
-    max-height: 180px;
 }
 .statsIcon {
     position: absolute;
     top: 15px;
     right: 15px;
-    font-size: 20px;
+    font-size: 30px;
 }
-.statsCard h6 {
+.statsCard h5 {
     font-weight: 700;
     text-align: start;
+
 }
 .stats-text {
-    font-size: 0.70rem;
+    font-size: 0.80rem;
     text-align: justify;
 }
 .statsCard .card-text {
     font-size: 2rem;
     font-weight: bold;
+}
+.second-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
 }
 .monthlyApp-card {
     border-radius: 10px;
@@ -221,10 +251,9 @@
     flex-direction: column;
     align-items: center;
     background-color: #F7E7CE;
-    padding: 20px;
+    padding: 30px;
     height: 100%;
-    max-height: 315px;
-    margin-bottom: 10px;
+    background-color: #F7E7CE;
 }
 .chart-wrapper {
     width: 100%;
@@ -236,19 +265,26 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content:space-around ;
     align-items: center;
-    justify-content: space-evenly;
-    padding: 20px;
-    min-height: 230px;
+    padding: 30px;
+    background-color: #F7E7CE;
+}
+.progress {
+    max-width: 350px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 .progress-card {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding: 20px;
-    height: 215px;
+    background-color: #F7E7CE;
+    width: 100%;
 }
 .progress-data {
     z-index: 1;
@@ -259,12 +295,12 @@
 }
 .circle {
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     background: conic-gradient(
         from 0deg,
         var(--clr, #ffffff) 0% calc(var(--progress) * 1%),
-        #fff calc(var(--progress) * 1%) 100%
+        #F5D700 calc(var(--progress) * 1%) 100%
     );
     border-radius: 50%;
     display: flex;
@@ -284,10 +320,9 @@
     border-radius: 50%;
 }
 .subtext {
-    font-size: 0.85rem;
+    font-size: 0.90rem;
     text-align: justify;
     padding: 5px;
-    margin: 4px 0;
 }
 .statsCard:hover, .pieChart:hover, .progress-card:hover {
     transform: translateY(-5px);
@@ -424,4 +459,59 @@ input[type="text"]:focus {
     gap: 10px;
     flex-direction: row;
     float: inline-end;
+}
+
+
+@media (max-width: 768px) {
+    .hero-greeting {
+        height: 150px;
+    }
+    .text-holder .date{
+        background-color: black;
+        font-size: 0.5rem;
+    }
+    .text-holder .title {
+        font-size: 1.2rem;
+        top: 35px;
+    }
+    .text-holder .subtitle {
+        position: absolute;
+        font-size: 0.9rem;
+        top: 65px;
+        line-height: normal;
+        text-align: justify;
+    }
+}
+@media (max-width: 992px) {
+    .stats-container {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+    .pieChart {
+        margin: 10px 0;
+        height: 350px;
+        display: flex;
+        align-items: flex-start;
+    }
+    .pieChart h5 {
+        margin-top: 10px 10px;
+        padding: 10px;
+    }
+    .chart-wrapper {
+        padding: 10px;
+    }
+    #conversionPieChart {
+        aspect-ratio: 1;
+        max-width: 280px;
+    }
+    .second-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .monthlyApp-card {
+        margin-top: 10px;
+        height: fit-content;
+    }
 }

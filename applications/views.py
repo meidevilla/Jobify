@@ -189,7 +189,7 @@ def calendar(request):
     for reminder in reminders:
         reminder_data.append({
             'title': reminder.title,
-            'start': reminder.reminder_time.strftime('%Y-%m-%dT%H:%M:%S'),  # Proper format
+            'start': reminder.reminder_time.strftime('%Y-%m-%dT%H:%M:%S'),
             'end': (reminder.reminder_time + timedelta(hours=1)).strftime('%Y-%m-%dT%H:%M:%S'),
             'description': reminder.description,
         })
