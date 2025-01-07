@@ -1,0 +1,77 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.sqlite3
+db.sqlite3
+/media/
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sql
+
+# Virtual environment:
+env/
+venv/
+ENV/
+VENV/
+
+# Static and media files (user-uploaded content)
+staticfiles/
+static/
+media/
+
+# Local settings
+*.local_settings.py
+settings_local.py
+
+# Test coverage
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# IDEs and editors:
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# macOS:
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux:
+*~
+
+# Logs and debug:
+*.log
+*.bak
+*.pid
+*.seed
+*.backup
+
+# Security:
+*.key
+*.pem
